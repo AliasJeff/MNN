@@ -96,7 +96,7 @@ else()
     message(FATAL_ERROR "CUDA not found >= ${CUDA_MIN_VERSION} required)")
 endif()
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fexceptions")
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fexceptions")
 
 option(MNN_CUDA_QUANT "Enable MNN CUDA Quant File" OFF)
 option(MNN_CUDA_BF16 "Enable MNN CUDA Bfloat16 File" OFF)

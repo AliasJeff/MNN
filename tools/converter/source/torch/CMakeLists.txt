@@ -37,7 +37,7 @@ find_package(Torch REQUIRED PATHS ${LIB_TORCH_PATH} NO_DEFAULT_PATH)
 
 target_include_directories(MNNConverterTorch PRIVATE ${TORCH_INCLUDE_DIRS})
 set_target_properties(MNNConverterTorch PROPERTIES CXX_STANDARD 14)
-target_compile_options(MNNConverterTorch PRIVATE "-fexceptions")
+# target_compile_options(MNNConverterTorch PRIVATE "-fexceptions")
 target_compile_options(MNNConverterTorch PRIVATE "-frtti")
 
 if (MSVC)
