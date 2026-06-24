@@ -29,6 +29,7 @@ import com.alibaba.mnnllm.android.utils.GithubUtils
 import com.alibaba.mnnllm.android.model.ModelUtils
 import com.alibaba.mnnllm.android.utils.PreferenceUtils
 import com.alibaba.mnnllm.android.utils.UiUtils
+import com.alibaba.mnnllm.android.dslpreview.DslPreviewActivity
 import com.alibaba.mnnllm.android.widgets.FullScreenImageViewer
 import com.alibaba.mnnllm.android.widgets.PopupWindowHelper
 import io.noties.markwon.Markwon
@@ -189,6 +190,9 @@ object ChatViewHolders {
         private val imageGenerated: ImageView =
             view.findViewById(R.id.image_generated)
 
+        // Preview UI button for DSL output
+        private val previewUiButton: View = view.findViewById(R.id.btn_preview_ui)
+
         // Action buttons
         private val actionButtonsLayout: LinearLayout = view.findViewById(R.id.ll_action_buttons)
         private val reportIssueButton: View = view.findViewById(R.id.btn_report_issue)
@@ -268,6 +272,13 @@ object ChatViewHolders {
                     com.alibaba.mnnllm.android.utils.ImageUtils.showImageMenu(it.context, imageUri)
                 }
             }
+            previewUiButton.setOnClickListener {
+                val chatDataItem = it.tag as ChatDataItem
+                val dslContent = chatDataItem.text ?: ""
+                val intent = Intent(it.context, DslPreviewActivity::class.java)
+                intent.putExtra(DslPreviewActivity.EXTRA_DSL_CONTENT, dslContent)
+                it.context.startActivity(intent)
+            }
         }
 
 
@@ -322,6 +333,8 @@ object ChatViewHolders {
                     imageGenerated.setImageURI(data.imageUri)
                 }
                 shareImageButton.visibility = if (data.imageUri != null) View.VISIBLE else View.GONE
+                previewUiButton.tag = data
+                previewUiButton.visibility = if (!data.loading && data.isDslOutput) View.VISIBLE else View.GONE
                 return
             }
 
@@ -376,6 +389,8 @@ object ChatViewHolders {
             toggleBenchmarkButton.tag = data
             replayAudioButton.tag = data
             shareImageButton.tag = data
+            previewUiButton.tag = data
+            previewUiButton.visibility = if (!data.loading && data.isDslOutput) View.VISIBLE else View.GONE
         }
         
         private fun updateThinkingView(data: ChatDataItem, context: android.content.Context) {

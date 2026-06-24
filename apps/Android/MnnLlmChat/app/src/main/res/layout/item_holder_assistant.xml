@@ -98,12 +98,27 @@
         android:background="#00f"
         tools:src="@drawable/testtest"/>
 
+    <!-- Preview UI button for DSL output -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_preview_ui"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_below="@id/image_generated"
+        android:layout_alignStart="@id/tv_chat_text"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/preview_ui"
+        android:textSize="13sp"
+        android:visibility="gone"
+        style="@style/Widget.Material3.Button.TonalButton"
+        tools:visibility="visible" />
+
     <!-- Button row above benchmark info -->
     <LinearLayout
         android:id="@+id/ll_action_buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/image_generated"
+        android:layout_below="@id/btn_preview_ui"
         android:layout_alignStart="@id/tv_chat_text"
         android:orientation="horizontal"
         android:layout_marginBottom="8dp"

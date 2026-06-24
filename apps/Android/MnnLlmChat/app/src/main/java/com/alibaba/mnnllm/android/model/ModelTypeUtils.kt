@@ -127,4 +127,12 @@ object ModelTypeUtils {
     fun isAudioModelByTags(tags: List<String>): Boolean {
         return tags.any { it.equals("Audio", ignoreCase = true) }
     }
+
+    /**
+     * Check if the model is a UI generator model that outputs DSL for UI rendering
+     */
+    fun isUiGeneratorModel(modelNameOrId: String): Boolean {
+        val lower = modelNameOrId.lowercase(Locale.getDefault())
+        return lower.contains("qwen3-1.7b-ours-mnn")
+    }
 }
