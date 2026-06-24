@@ -133,6 +133,6 @@ object ModelTypeUtils {
      */
     fun isUiGeneratorModel(modelNameOrId: String): Boolean {
         val lower = modelNameOrId.lowercase(Locale.getDefault())
-        return lower.contains("ui-gen") || lower.contains("uigen")
+        return lower.contains("qwen3-1.7b-ours-mnn")
     }
 }

@@ -25,8 +25,19 @@ class DslPreviewActivity : AppCompatActivity() {
         webView.settings.domStorageEnabled = true
         webView.webViewClient = WebViewClient()
 
-        val html = DslParser.parse(dslText)
-        webView.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null)
+        // Use WebView measured size for ratio tag; base URL required for external Tailwind CDN
+        webView.post {
+            val width = webView.width.takeIf { it > 0 } ?: resources.displayMetrics.widthPixels
+            val height = webView.height.takeIf { it > 0 } ?: resources.displayMetrics.heightPixels
+            val html = DslParser.parse(
+                dslText = dslText,
+                width = width,
+                height = height,
+                applyBeautify = true,
+                showFrame = false
+            )
+            webView.loadDataWithBaseURL("https://localhost/", html, "text/html", "UTF-8", null)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
