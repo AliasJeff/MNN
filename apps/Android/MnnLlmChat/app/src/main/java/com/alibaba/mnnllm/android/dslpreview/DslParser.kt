@@ -12,6 +12,7 @@ object DslParser {
             .replace("&", "&amp;")
             .replace("<", "&lt;")
             .replace(">", "&gt;")
+            .replace("\"", "&quot;")
         return """
             <!DOCTYPE html>
             <html>

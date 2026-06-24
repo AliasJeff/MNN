@@ -333,6 +333,8 @@ object ChatViewHolders {
                     imageGenerated.setImageURI(data.imageUri)
                 }
                 shareImageButton.visibility = if (data.imageUri != null) View.VISIBLE else View.GONE
+                previewUiButton.tag = data
+                previewUiButton.visibility = if (!data.loading && data.isDslOutput) View.VISIBLE else View.GONE
                 return
             }
 
