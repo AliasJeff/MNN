@@ -79,6 +79,8 @@ class ChatDataItem {
             return null
         }
 
+    var isDslOutput: Boolean = false
+
     var showThinking: Boolean = true
 
     var thinkingFinishedTime = -1L

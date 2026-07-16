@@ -203,7 +203,8 @@ dependencies {
     implementation 'com.nambimobile.widgets:expandable-fab:1.2.1'
     implementation 'com.github.squti:Android-Wave-Recorder:2.0.1'
     implementation 'androidx.preference:preference-ktx:1.2.1'
-    
+    implementation 'io.github.haibiiin:json-repair:0.4.0'
+
     // MNN TTS Framework
     implementation project(':mnn_tts')
     implementation project(':model_downloader')

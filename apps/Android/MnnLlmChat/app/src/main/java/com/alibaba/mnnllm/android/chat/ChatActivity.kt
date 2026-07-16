@@ -782,6 +782,10 @@ class ChatActivity : AppCompatActivity() {
                 recentItem.text = response
                 recentItem.displayText = response
             }
+            // Mark DSL output for UI generator models
+            if (ModelTypeUtils.isUiGeneratorModel(modelName) || ModelTypeUtils.isUiGeneratorModel(modelId ?: "")) {
+                recentItem.isDslOutput = true
+            }
         }
         
         recentItem.benchmarkInfo = ModelUtils.generateBenchMarkString(benchMarkResult)

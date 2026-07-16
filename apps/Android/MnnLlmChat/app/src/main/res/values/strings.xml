@@ -675,4 +675,7 @@
     <string name="save_image">Save Image</string>
     <string name="image_saved_to_gallery">Image saved to gallery</string>
     <string name="failed_to_save_image">Failed to save image</string>
+
+    <!-- DSL Preview Strings -->
+    <string name="preview_ui">预览 UI</string>
 </resources>
