@@ -1,5 +1,6 @@
 package com.alibaba.mnnllm.android.dslpreview
 
+import io.github.haibiiin.json.repair.JSONRepair
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -21,7 +22,12 @@ object DslParser {
     ): String {
         return try {
             val jsonText = extractJson(dslText)
-            val node = JSONObject(jsonText)
+            val repairedJson = try {
+                JSONRepair().handle(jsonText)
+            } catch (_: Exception) {
+                jsonText
+            }
+            val node = JSONObject(repairedJson)
             val ratioTag = getRatioTag(width, height)
             val adapted = transformNode(node, ratioTag, applyBeautify)
             val bodyInner = jsonToHtml(adapted)
